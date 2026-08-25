@@ -1,9 +1,14 @@
+import editNameList from "./editNameList.js";
+
 export default function createNameList(name) {
 
     const liElement = document.createElement("li");
     liElement.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 
-    liElement.append(document.createTextNode(name));
+    const nameElement = document.createElement("span");
+    nameElement.classList.add("item-name", "flex-grow-1");
+    nameElement.innerText = name;
+    liElement.append(nameElement);
 
     const buttonDeleteElement = document.createElement("button");
     buttonDeleteElement.classList.add("btn", "btn-danger", "btn-sm");
@@ -17,6 +22,9 @@ export default function createNameList(name) {
         event.currentTarget.parentElement.remove();
     });
     liElement.append(buttonDeleteElement);
+
+    editNameList(liElement);
+
     return liElement;
 
 }
